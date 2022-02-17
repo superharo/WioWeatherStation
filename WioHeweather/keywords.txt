@@ -1,0 +1,15 @@
+WioHeweather	KEYWORD1
+OW_Weather	KEYWORD1
+OW_current	KEYWORD2
+OW_forecast	KEYWORD2
+getForecast	KEYWORD2
+
+WioRealTime	KEYWORD1
+RealTime_Clock	KEYWORD1	
+calibreTimeNow	KEYWORD2
+devicetime	KEYWORD2
+rtc		KEYWORD2
+now		KEYWORD2
+
+WioTFTLCDDisplay	KEYWORD1
+
