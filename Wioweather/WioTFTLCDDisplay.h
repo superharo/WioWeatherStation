@@ -2,9 +2,9 @@
 #define __WIO_TFT_LCD_DISPLAY_H__
 
 #include <TFT_eSPI.h>
-#include <Free_Fonts.h>
+#include "Free_Fonts.h"
 #include <Arduino.h>
-#include <WioHeweather.h>
+#include "WioHeweather.h"
 #include "RawImage.h"
 #include "lcd_backlight.hpp"
 #include <cstdint>

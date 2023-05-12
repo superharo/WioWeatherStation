@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "C:\\002\\arduinoworkspace\\WioWeatherStation\\WioHeweatherDemo\\WioHeweatherDemo.ino"
 #include "WioHeweather.h"
 #include "WioRealTime.h"
 #include "WioTFTLCDDisplay.h"

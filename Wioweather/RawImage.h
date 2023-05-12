@@ -1,7 +1,7 @@
-  #pragma once
-#include<stdint.h>
-#include<SD/Seeed_SD.h>
-
+#pragma once
+#include <stdint.h>
+#include <Seeed_FS.h>
+#include "SD/Seeed_SD.h"
 
 /*
 USAGE:
@@ -22,40 +22,49 @@ USAGE:
 
 extern TFT_eSPI tft_lcd;
 
-template<class type>
-struct RawImage{
-    type * ptr(){
+template <class type>
+struct RawImage
+{
+    type *ptr()
+    {
         return (type *)(this + 1);
     }
-    type get(int16_t x, int16_t y){
+    type get(int16_t x, int16_t y)
+    {
         return this->ptr()[y * width() + x];
     }
-    void draw(size_t x = 0, size_t y = 0){
+    void draw(size_t x = 0, size_t y = 0)
+    {
         tft_lcd.pushImage(x, y, width(), height(), ptr());
     }
-    void release(){
-        delete [] this;
+    void release()
+    {
+        delete[] this;
     }
-    int16_t width(){ return _width; }
-    int16_t height(){ return _height; }
+    int16_t width() { return _width; }
+    int16_t height() { return _height; }
+
 private:
-    int16_t  _width;
-    int16_t  _height;
+    int16_t _width;
+    int16_t _height;
 };
 
-typedef RawImage<uint8_t>  Raw8;
+typedef RawImage<uint8_t> Raw8;
 typedef RawImage<uint16_t> Raw16;
 
-template<class type>
-RawImage<type> * newImage(const char * path){
+template <class type>
+RawImage<type> *newImage(const char *path)
+{
     typedef RawImage<type> raw;
     File f = SD.open(path, FILE_READ);
-    if (!f){
+    if (!f)
+    {
         return nullptr;
     }
     int32_t size = f.size();
-    raw   * mem = (raw *)new uint8_t[size];
-    if (mem == nullptr){
+    raw *mem = (raw *)new uint8_t[size];
+    if (mem == nullptr)
+    {
         return nullptr;
     }
     f.read(mem, size);
@@ -63,8 +72,9 @@ RawImage<type> * newImage(const char * path){
     return mem;
 }
 
-template<class type>
-void drawImage(const char * path, size_t x = 0, size_t y = 0){
+template <class type>
+void drawImage(const char *path, size_t x = 0, size_t y = 0)
+{
     auto img = newImage<type>(path);
     img->draw(x, y);
     img->release();
